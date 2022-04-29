@@ -4,7 +4,7 @@ using BepInEx.Configuration;
 
 namespace r1ft.Headlamps
 {
-    [BepInPlugin("com.r1ft.Headlamps", "r1ft.Headlamps", "2.2.0")]
+    [BepInPlugin("com.r1ft.Headlamps", "r1ft.Headlamps", "1.0.0")]
     public class Headlamps : BaseUnityPlugin
     {
         public static GameObject Hook;
