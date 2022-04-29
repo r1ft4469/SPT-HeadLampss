@@ -45,7 +45,6 @@ namespace r1ft.Headlamps
         private static void ToggleLight()
         {
             _toggle = !_toggle;
-
             foreach (var mount in HeadLamps.Mounts)
             {
                 var mod_mount = GameObject.Find(HeadLamps.Head + mount);
@@ -57,6 +56,15 @@ namespace r1ft.Headlamps
                     var lightSource = GameObject.Find(HeadLamps.Head + mount + light);
                     if (lightSource == null)
                         continue;
+
+                    if (light.TakeLast(1).ToString() == "2")
+                    {
+                        lightSource.SetActive(_toggle);
+
+                        var lightSource1 = GameObject.Find(HeadLamps.Head + mount + light.Trim('2') + '1');
+                        if (lightSource1 == null)
+                            continue;
+                    }
 
                     lightSource.SetActive(_toggle);
                 }
@@ -91,6 +99,13 @@ namespace r1ft.Headlamps
                         var lightSource = GameObject.Find(HeadLamps.Head + mount + light);
                         if (lightSource == null)
                             continue;
+
+                        if (light.TakeLast(1).ToString() == "2")
+                        {
+                            lightSource = GameObject.Find(HeadLamps.Head + mount + light.Trim('2') + '1');
+                            if (lightSource == null)
+                                continue;
+                        }
 
                         foreach (var altlight in HeadLamps.AltMode)
                         {
