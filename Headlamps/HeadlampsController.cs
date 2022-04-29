@@ -48,13 +48,13 @@ namespace r1ft.Headlamps
 
             foreach (var mount in HeadLamps.Mounts)
             {
-                var mod_mount = GameObject.Find(mount);
+                var mod_mount = GameObject.Find(HeadLamps.Head + mount);
                 if (mod_mount == null)
                     continue;
 
                 foreach (var light in HeadLamps.Lights)
                 {
-                    var lightSource = GameObject.Find(mount + light);
+                    var lightSource = GameObject.Find(HeadLamps.Head + mount + light);
                     if (lightSource == null)
                         continue;
 
@@ -65,7 +65,7 @@ namespace r1ft.Headlamps
                 {
                     foreach (var altlight in HeadLamps.AltMode)
                     {
-                        var altlightSource = GameObject.Find(mount + altlight);
+                        var altlightSource = GameObject.Find(HeadLamps.Head + mount + altlight);
                         if (altlightSource == null)
                             continue;
 
@@ -82,19 +82,19 @@ namespace r1ft.Headlamps
             {
                 foreach (var mount in HeadLamps.Mounts)
                 {
-                    var mod_mount = GameObject.Find(mount);
+                    var mod_mount = GameObject.Find(HeadLamps.Head + mount);
                     if (mod_mount == null)
                         continue;
 
                     foreach (var light in HeadLamps.Lights)
                     {
-                        var lightSource = GameObject.Find(mount + light);
+                        var lightSource = GameObject.Find(HeadLamps.Head + mount + light);
                         if (lightSource == null)
                             continue;
 
                         foreach (var altlight in HeadLamps.AltMode)
                         {
-                            var altlightSource = GameObject.Find(mount + altlight);
+                            var altlightSource = GameObject.Find(HeadLamps.Head + mount + altlight);
                             if (altlightSource == null)
                                 continue;
 

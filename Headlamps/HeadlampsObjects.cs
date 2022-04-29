@@ -4,18 +4,20 @@ namespace r1ft.Headlamps
 {
     internal static class HeadLamps
     {
+        public static readonly string Head = "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/";
+
         public static string[] Mounts = new[]
         {
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_opsCore_fast_black(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_opsCore_fast_tan(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_galvion_caiman(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_mich2001_od(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_mich2002_od(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_tc800(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_nfm_hjelm(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_LSHZ(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_hops_core_fast(Clone)/mod_mount",
-            "PlayerSuperior(Clone)/Player/Root_Joint/Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base HumanNeck/Base HumanHead/item_equipment_helmet_crye_airframe_tan(Clone)/mod_mount"
+            "item_equipment_helmet_opsCore_fast_black(Clone)/mod_mount",
+            "item_equipment_helmet_opsCore_fast_tan(Clone)/mod_mount",
+            "item_equipment_helmet_galvion_caiman(Clone)/mod_mount",
+            "item_equipment_helmet_mich2001_od(Clone)/mod_mount",
+            "item_equipment_helmet_mich2002_od(Clone)/mod_mount",
+            "item_equipment_helmet_tc800(Clone)/mod_mount",
+            "item_equipment_helmet_nfm_hjelm(Clone)/mod_mount",
+            "item_equipment_helmet_LSHZ(Clone)/mod_mount",
+            "item_equipment_helmet_hops_core_fast(Clone)/mod_mount",
+            "item_equipment_helmet_crye_airframe_tan(Clone)/mod_mount"
         };
 
         public static string[] Lights = new[] {
