@@ -87,32 +87,32 @@ namespace r1ft.Headlamps
 
                     foreach (var light in HeadLamps.Lights)
                     {
-                        var lightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + "1");
-                        if (lightSource == null)
-                            continue;
-
-                        _mode += 1;
-                        if (_mode > 3)
-                            _mode = 0;
-
-                        var altlightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + _mode.ToString());
-                        if (altlightSource == null)
+                        var lastlightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + _mode.ToString());
+                        if (lastlightSource == null)
                             return;
 
-                        switch (_mode)
+                        _mode++;
+                        if (_mode > 3)
+                            _mode = 1;
+
+                        var lightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + _mode.ToString());
+                        if (lightSource == null)
+                            return;
+
+                        if (_mode == 3)
                         {
-                            case 2:
-                                altlightSource.SetActive(true);
-                                lightSource.SetActive(false);
-                                break;
-                            case 3:
-                                altlightSource.SetActive(true);
-                                lightSource.SetActive(true);
-                                break;
-                            default:
-                                altlightSource.SetActive(false);
-                                lightSource.SetActive(true);
-                                break;
+                            var combilightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + "1");
+                            if (lightSource == null)
+                                return;
+
+                            combilightSource.SetActive(true);
+                            lastlightSource.SetActive(false);
+                            lightSource.SetActive(true);
+                        }
+                        else
+                        {
+                            lastlightSource.SetActive(false);
+                            lightSource.SetActive(true);
                         }
                     }
                 }
