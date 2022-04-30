@@ -9,7 +9,7 @@ namespace r1ft.Headlamps
     {
         private static GameWorld gameWorld;
         private static bool _toggle = false;
-        private static int _mode = 0;
+        private static int _mode = 1;
 
         public void Update()
         {
@@ -26,13 +26,9 @@ namespace r1ft.Headlamps
             if (gameWorld.AllPlayers.Count == 0)
                 return;
 
-            if (gameWorld.AllPlayers[0] is HideoutPlayer)
-                return;
-
             var localPlayer = gameWorld.AllPlayers[0];
             if (localPlayer == null)
                 return;
-
 
             if (Headlamps.HeadlightToggleKey.Value.IsUp())
                 ToggleLight();
@@ -45,7 +41,7 @@ namespace r1ft.Headlamps
         private static void ToggleLight()
         {
             _toggle = !_toggle;
-            foreach (var mount in HeadLamps.Mounts)
+            foreach (var mount in HeadLamps.Helmets)
             {
                 var mod_mount = GameObject.Find(HeadLamps.Head + mount);
                 if (mod_mount == null)
@@ -53,31 +49,26 @@ namespace r1ft.Headlamps
 
                 foreach (var light in HeadLamps.Lights)
                 {
-                    var lightSource = GameObject.Find(HeadLamps.Head + mount + light);
+                    var lightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + _mode.ToString());
                     if (lightSource == null)
                         continue;
 
-                    if (light.TakeLast(1).ToString() == "2")
+                    switch (_mode)
                     {
-                        lightSource.SetActive(_toggle);
+                        case 2:
+                            lightSource.SetActive(_toggle);
+                            break;
+                        case 3:
+                            var altlightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + "1");
+                            if (altlightSource == null)
+                                break;
 
-                        var lightSource1 = GameObject.Find(HeadLamps.Head + mount + light.Trim('2') + '1');
-                        if (lightSource1 == null)
-                            continue;
-                    }
-
-                    lightSource.SetActive(_toggle);
-                }
-
-                if (!_toggle)
-                {
-                    foreach (var altlight in HeadLamps.AltMode)
-                    {
-                        var altlightSource = GameObject.Find(HeadLamps.Head + mount + altlight);
-                        if (altlightSource == null)
-                            continue;
-
-                        altlightSource.SetActive(false);
+                            lightSource.SetActive(_toggle);
+                            altlightSource.SetActive(_toggle);
+                            break;
+                        default:
+                            lightSource.SetActive(_toggle);
+                            break;
                     }
                 }
             }
@@ -88,7 +79,7 @@ namespace r1ft.Headlamps
         {
             if (_toggle)
             {
-                foreach (var mount in HeadLamps.Mounts)
+                foreach (var mount in HeadLamps.Helmets)
                 {
                     var mod_mount = GameObject.Find(HeadLamps.Head + mount);
                     if (mod_mount == null)
@@ -96,40 +87,32 @@ namespace r1ft.Headlamps
 
                     foreach (var light in HeadLamps.Lights)
                     {
-                        var lightSource = GameObject.Find(HeadLamps.Head + mount + light);
+                        var lightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + "1");
                         if (lightSource == null)
                             continue;
 
-                        if (light.TakeLast(1).ToString() == "2")
-                        {
-                            lightSource = GameObject.Find(HeadLamps.Head + mount + light.Trim('2') + '1');
-                            if (lightSource == null)
-                                continue;
-                        }
+                        _mode += 1;
+                        if (_mode > 3)
+                            _mode = 0;
 
-                        foreach (var altlight in HeadLamps.AltMode)
-                        {
-                            var altlightSource = GameObject.Find(HeadLamps.Head + mount + altlight);
-                            if (altlightSource == null)
-                                continue;
+                        var altlightSource = GameObject.Find(HeadLamps.Head + mount + light + HeadLamps.Mode + _mode.ToString());
+                        if (altlightSource == null)
+                            return;
 
-                            _mode += 1;
-                            switch (_mode)
-                            {
-                                case 1:
-                                    altlightSource.SetActive(true);
-                                    lightSource.SetActive(true);
-                                    break;
-                                case 2:
-                                    altlightSource.SetActive(true);
-                                    lightSource.SetActive(false);
-                                    break;
-                                default:
-                                    altlightSource.SetActive(false);
-                                    lightSource.SetActive(true);
-                                    _mode = 0;
-                                    break;
-                            }
+                        switch (_mode)
+                        {
+                            case 2:
+                                altlightSource.SetActive(true);
+                                lightSource.SetActive(false);
+                                break;
+                            case 3:
+                                altlightSource.SetActive(true);
+                                lightSource.SetActive(true);
+                                break;
+                            default:
+                                altlightSource.SetActive(false);
+                                lightSource.SetActive(true);
+                                break;
                         }
                     }
                 }
