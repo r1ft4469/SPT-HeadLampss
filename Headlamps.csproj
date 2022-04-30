@@ -62,4 +62,21 @@
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd $(TargetDir)
+move $(TargetFileName) ..\
+del /S /Q *
+mkdir BepInEx
+cd BepInEx
+mkdir plugins
+cd plugins
+move ..\..\..\$(TargetFileName) .\
+cd $(TargetDir)
+7z a r1ft.HeadLamps.zip *
+rmdir /S /Q BepInEx</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>cd $(TargetDir)
+del r1ft.HeadLamps.zip</PreBuildEvent>
+  </PropertyGroup>
 </Project>
